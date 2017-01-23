@@ -5,7 +5,7 @@ const byte LATCH_OUT = 1;
 const byte TAKT_OUT  = 2;
 
 
-//Функция вывода данных 24 бита
+// 24 bit output
 void sendo(long output) {
   for (int i = 23; i >= 0; i--) {
     digitalWrite(DATA_OUT, (output >> i) & 1);
@@ -47,6 +47,21 @@ void play_layers() {
   delay(300);
 }
 
+void play_layers_add(){
+
+sendo(B1111*256*256 + B11111111*256 + B11111110);
+delay(300);
+
+sendo(B1111*256*256 + B11111111*256 + B11111100);
+delay(300);
+
+sendo(B1111*256*256 + B11111111*256 + B11111000);
+delay(300);
+
+sendo(B1111*256*256 + B11111111*256 + B11110000);
+delay(300);
+
+}
 
 void play_one() {
   sendo(B00011110);
@@ -66,6 +81,10 @@ void loop()
 {
 
 play_layers();
+delay(1000);
+
+play_layers_add();
+delay(1000);
 
 }
 
